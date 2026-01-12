@@ -94,7 +94,7 @@ class Restaurant
         return $this;
     }
 
-    public function getAmOpeningTime(): ?\DateTime
+    public function getAmOpeningTime(): ?Array
     {
         return $this->amOpeningTime;
     }
