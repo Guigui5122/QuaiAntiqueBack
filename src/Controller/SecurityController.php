@@ -24,6 +24,31 @@ class SecurityController extends AbstractController
     {
     }
     
+
+/** @OA\Post(
+     *     path="/api/registration",
+     *     summary="Inscription d'un nouvel utilisateur",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Données de l'utilisateur à inscrire",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="email", type="string", example="adresse@email.com"),
+     *             @OA\Property(property="password", type="string", example="Mot de passe")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Utilisateur inscrit avec succès",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="user", type="string", example="Nom d'utilisateur"),
+     *             @OA\Property(property="apiToken", type="string", example="31a023e212f116124a36af14ea0c1c3806eb9378"),
+     *             @OA\Property(property="roles", type="array", @OA\Items(type="string", example="ROLE_USER"))
+     *         )
+     *     )
+     * )
+     */
     #[Route('/registration', name: 'registration', methods: 'POST')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher): JsonResponse
     {
