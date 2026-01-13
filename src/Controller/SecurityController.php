@@ -25,7 +25,7 @@ class SecurityController extends AbstractController
     #[Route('/registration', name: 'registration', methods: 'POST')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher): JsonResponse
     {
-        $user = $this->serializer->deserializer($request->getContent(), User::class, 'json');
+        $user = $this->serializer->deserialize($request->getContent(), User::class, 'json');
         $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
         $user->setCreatedAt(new DateTimeImmutable());
 
