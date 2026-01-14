@@ -22,23 +22,23 @@ class Restaurant
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?array $amOpeningTime = null;
+    #[ORM\Column(nullable: true)]
+    private ?array $amOpeningTime = [];
 
     #[ORM\Column(nullable: true)]
-    private ?array $pmOpeningTime = null;
+    private ?array $pmOpeningTime = [];
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $maxGuest = null;
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $maxGuest =0;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $owner = null;
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private int $owner = 0;
 
     /**
      * @var Collection<int, Picture>
@@ -70,7 +70,7 @@ class Restaurant
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -82,7 +82,7 @@ class Restaurant
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -99,19 +99,19 @@ class Restaurant
         return $this->amOpeningTime;
     }
 
-    public function setAmOpeningTime(array $amOpeningTime): static
+    public function setAmOpeningTime(?array $amOpeningTime): static
     {
         $this->amOpeningTime = $amOpeningTime;
 
         return $this;
     }
 
-    public function getPmOpeningTime(): ?\DateTime
+    public function getPmOpeningTime(): ?array
     {
         return $this->pmOpeningTime;
     }
 
-    public function setPmOpeningTime(?\DateTime $pmOpeningTime): static
+    public function setPmOpeningTime(?array $pmOpeningTime): static
     {
         $this->pmOpeningTime = $pmOpeningTime;
 
@@ -123,7 +123,7 @@ class Restaurant
         return $this->maxGuest;
     }
 
-    public function setMaxGuest(int $maxGuest): static
+    public function setMaxGuest(?int $maxGuest): static
     {
         $this->maxGuest = $maxGuest;
 
@@ -135,7 +135,7 @@ class Restaurant
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
 
@@ -159,7 +159,7 @@ class Restaurant
         return $this->owner;
     }
 
-    public function setOwner(int $owner): static
+    public function setOwner(?int $owner): static
     {
         $this->owner = $owner;
 
