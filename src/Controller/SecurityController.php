@@ -131,14 +131,12 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    /**
-     * Une fonction me() dans le contrôleur Security retournant l’objet $user sérialisé,
-     */
+    // Afficher un utilisateur 
     #[Route('/user/{id}', name: 'user', methods: 'GET')]
     #[OA\Get(
         path: '/user/{id}',
         summary: 'Voir un utilisateur par son id',
-        tags: ['User']
+        tags: ['User'],
     )]
     #[OA\Parameter(
         name: 'id',
@@ -178,16 +176,12 @@ class SecurityController extends AbstractController
     }
 
 
-    // TODO : implémenter la méthode edit() 
-    /**
-     * Une fonction edit() dans le même contrôleur désérialisant l’objet Request $request,
-     * mettant à jour les informations de l’utilisateur (dont le mot de passe et la date de mise à jour de l’objet UpdatedAt) et les flushant en base.
-     */
-// Modifier un utilisateur
+    // Modifier un utilisateur
     #[Route('/editAccount/{id}', name: 'edit', methods: 'PUT', requirements: ['id' => '\d+'])]
     #[OA\Put(
         path: '/api/editAccount/{id}',
         summary: 'Modifier un utilisateur par son id',
+        tags: ['User'],
         requestBody: new OA\RequestBody(
             required: true,
             description: 'Informations de l\'utilisateur à modifier',
